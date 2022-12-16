@@ -15,7 +15,8 @@ WORKDIR $APP_HOME
 # install
 COPY . $APP_HOME
 RUN pip install -r requirements-dev.txt
-RUN pip install -e .
+RUN pip install -r requirements.txt
+# RUN pip install -e .
 
 RUN chown -R app:app $APP_HOME
 USER app
