@@ -5,5 +5,5 @@ from .config import settings
 engine = create_engine(
     settings.db.uri,
     echo=settings.db.echo,
-    connect_args=settings.db.connect_args
+    connect_args=settings.db.connect_args,
 )

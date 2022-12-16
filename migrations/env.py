@@ -1,14 +1,11 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
+from sqlalchemy import engine_from_config, pool
 
 from checkmate import models
-from checkmate.db import engine
 from checkmate.config import settings
-
+from checkmate.db import engine
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -65,7 +62,9 @@ def run_migrations_online() -> None:
     connectable = engine
 
     with connectable.connect() as connection:
-        context.configure(connection=connection, target_metadata=target_metadata)
+        context.configure(
+            connection=connection, target_metadata=target_metadata
+        )
 
         with context.begin_transaction():
             context.run_migrations()
