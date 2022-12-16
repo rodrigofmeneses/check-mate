@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    environment:
+      CHECKMATE_DB__uri: "postgresql://postgres:postgres@db:5432/${CHECKMATE_DB:-checkmate}"
+    volumes:
+      - .:/home/app/api
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+  db:
+    build: postgres
+    image: postgres-multi-user
+    volumes:
+      - pg_database:/var/lib/postgresql/data
+
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DBS=checkmate, checkmate_test
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+volumes:
+  pg_database:

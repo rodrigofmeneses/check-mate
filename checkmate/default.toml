@@ -1,0 +1,6 @@
+[default]
+
+[default.db]
+connect_args = {check_same_thread=false}
+echo = false
+uri = ''

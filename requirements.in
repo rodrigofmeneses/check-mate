@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlmodel
+typer
+dynaconf
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+psycopg2-binary
+alembic
+rich
