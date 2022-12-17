@@ -1,6 +1,7 @@
 fastapi
 uvicorn
 sqlmodel
+pydantic[email]
 typer
 dynaconf
 python-jose[cryptography]
@@ -8,4 +9,3 @@ passlib[bcrypt]
 python-multipart
 psycopg2-binary
 alembic
-rich
