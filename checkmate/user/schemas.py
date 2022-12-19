@@ -12,7 +12,6 @@ class UserBase(BaseModel):
         max_length=20,
     )
     email: EmailStr
-    password: str
     avatar: Optional[str]
     active: bool = True
 
@@ -21,7 +20,7 @@ class UserBase(BaseModel):
 
 
 class UserRequest(UserBase):
-    ...
+    password: str
 
 
 class UserResponse(UserBase):
