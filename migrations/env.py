@@ -4,7 +4,7 @@ from alembic import context
 from sqlmodel import SQLModel
 
 from checkmate.config import settings
-from checkmate.db import engine
+from checkmate.database import engine
 from checkmate.user.models import User
 
 # this is the Alembic Config object, which provides
