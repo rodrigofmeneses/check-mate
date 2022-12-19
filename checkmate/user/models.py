@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import EmailStr
 from sqlmodel import Field, SQLModel
 
-from .security import HashedPassword
+from checkmate.security import HashedPassword
 
 
 class User(SQLModel, table=True):
