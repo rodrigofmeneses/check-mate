@@ -1,6 +1,5 @@
 from fastapi import APIRouter, status
 from fastapi.exceptions import HTTPException
-from psycopg2.errors import UniqueViolation
 from sqlmodel import Session
 
 from checkmate.database import ActiveSession
@@ -20,7 +19,7 @@ def create_user(*, user: UserRequest, session: Session = ActiveSession):
     try:
         session.add(db_user)
         session.commit()
-    except UniqueViolation:
+    except Exception:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Username already exists",
