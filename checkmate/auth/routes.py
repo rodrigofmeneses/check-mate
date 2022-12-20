@@ -5,9 +5,9 @@ from fastapi.exceptions import HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 
 from checkmate.config import settings
-from checkmate.user import User
+from checkmate.user.models import User
 
-from .models import Token
+from .schemas import Token
 from .utils import authenticate_user, create_access_token, get_user
 
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.security.access_token_expire_minutes

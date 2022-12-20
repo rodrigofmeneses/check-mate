@@ -1,6 +1,6 @@
 from . import schemas
 from .models import User
-from .router import router
+from .routes import router
 
 # from .schemas import
 

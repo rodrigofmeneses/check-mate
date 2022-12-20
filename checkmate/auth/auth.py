@@ -5,11 +5,12 @@ from typing import Callable, Optional, Union
 from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
+from sqlmodel import Session, select
 
 from checkmate.config import settings
+from checkmate.database import engine
 from checkmate.security import verify_password
 from checkmate.user import User
-from checkmate.user.utils import get_user
 
 from .schemas import TokenData
 
@@ -17,7 +18,7 @@ SECRET_KEY = settings.security.secret_key
 ALGORITHM = settings.security.algorithm
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/token")
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta]) -> str:
@@ -42,6 +43,13 @@ def authenticate_user(
     if not verify_password(password, user.password):
         return False
     return user
+
+
+def get_user(username) -> Optional[User]:
+    """Get user from database"""
+    query = select(User).where(User.username == username)
+    with Session(engine) as session:
+        return session.exec(query).first()
 
 
 def get_current_user(
