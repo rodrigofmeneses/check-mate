@@ -1,7 +1,7 @@
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import EmailStr
-from sqlmodel import Field, SQLModel
+from sqlmodel import Field, Relationship, SQLModel
 
 from checkmate.security import HashedPassword
 
@@ -15,3 +15,5 @@ class User(SQLModel, table=True):
     password: HashedPassword
     avatar: Optional[str]
     active: bool = True
+
+    tasks: List["Task"] = Relationship(back_populates="user")
