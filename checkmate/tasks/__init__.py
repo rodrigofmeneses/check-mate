@@ -1,6 +1,5 @@
 from . import schemas
 from .models import Task
-
-# from .routes import router
+from .router import router
 
 __all__ = ["Task", "schemas", "router"]

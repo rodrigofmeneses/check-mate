@@ -23,7 +23,7 @@ def create_user(*, user: UserRequest, session: Session = ActiveSession):
     except Exception:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Username already exists",
+            detail="Username or Email already exists",
         )
     return db_user
 
