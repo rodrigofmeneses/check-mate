@@ -34,3 +34,11 @@ class TaskResponse(TaskBase):
     creation_date: datetime
     update_date: datetime
     user_id: int
+
+
+class UpdateTaskRequest(TaskRequest):
+    """Serializer for update Task response"""
+
+    title: Optional[str]
+    description: Optional[str]
+    status: Optional[TaskStatus]
